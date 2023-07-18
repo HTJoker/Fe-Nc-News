@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { getArticles } from "../api";
 import { Link } from "react-router-dom";
 
-export default function Articles({ loading, setLoading }) {
+export default function Articles() {
 	const [articles, setArticles] = useState([]);
+	const [loading, setLoading] = useState(true);
+
 	useEffect(() => {
 		setLoading(loading);
 		getArticles()

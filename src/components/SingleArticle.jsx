@@ -2,23 +2,24 @@ import { useEffect, useState } from "react";
 import { getArticleById } from "../api";
 import { useParams } from "react-router-dom";
 
-export default function SingleArticle({ loading, setLoading }) {
+export default function SingleArticle() {
 	const { article_id } = useParams();
 
+	const [isLoading, setIsLoading] = useState(true);
 	const [singleArticle, setSingleArticle] = useState([]);
 
 	useEffect(() => {
-		setLoading(true);
+		setIsLoading(true);
 		getArticleById(article_id)
 			.then((data) => {
 				setSingleArticle(data);
 			})
 			.then(() => {
-				setLoading(false);
+				setIsLoading(false);
 			});
 	}, [article_id]);
 
-	return loading ? (
+	return isLoading ? (
 		<section id="loading">
 			<h1>Loading{"..."}</h1>
 		</section>
