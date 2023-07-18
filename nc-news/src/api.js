@@ -9,3 +9,7 @@ export const getArticles = async () => {
 	return data.articles;
 };
 
+export const getArticleById = async (article_id) => {
+	const { data } = await myApi.get(`/articles/${article_id}`);
+	return data.article;
+};
