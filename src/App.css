@@ -93,7 +93,7 @@ img {
 .articleContainer > img {
 	border-radius: 1rem;
 	box-shadow: var(--shadow);
-	width: 800px;
+	width: 60%;
 	margin: 1rem 0;
 }
 
@@ -101,7 +101,7 @@ img {
 	padding: 2rem;
 	border-radius: 1rem;
 	font-size: 2rem;
-	width: 800px;
+	width: 60%;
 	text-align: center;
 	background-color: var(--header);
 }
@@ -117,17 +117,11 @@ img {
 	margin: 1rem;
 }
 
-.buttons {
-	color: var(--bg);
-	border-radius: 1rem;
-	background-color: var(--other);
-	padding: 0.5rem 1.5rem;
-	font-size: 1.5rem;
-}
-
-.buttons:hover {
-	background-color: rgba(69, 123, 157, 60%);
-	box-shadow: var(--shadow);
+.comments {
+	width: 100vw;
+	display: flex;
+	flex-direction: column;
+	align-items:center ;
 }
 
 .commentList > li {
