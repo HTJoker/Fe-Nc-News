@@ -9,12 +9,8 @@ export default function Articles() {
 	useEffect(() => {
 		setLoading(loading);
 		getArticles()
-			.then((res) => {
-				setArticles(res);
-			})
-			.then(() => {
-				setLoading(!loading);
-			});
+			.then((res) => setArticles(res))
+			.then(() => setLoading(!loading));
 	}, []);
 
 	return loading ? (
