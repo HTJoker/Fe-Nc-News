@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getArticleById } from "../api";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 export default function SingleArticle() {
 	const { article_id } = useParams();
@@ -27,8 +27,11 @@ export default function SingleArticle() {
 		<main className="articleContainer">
 			<h2>{singleArticle.title}</h2>
 			<h4>{singleArticle.author}</h4>
-			<img src={singleArticle.article_img_url} alt="" />
+			<img src={singleArticle.article_img_url} />
 			<p>{singleArticle.body}</p>
+			<Link to={`/articles/${article_id}/comments`}>
+				<h3 className="buttons">Comments</h3>
+			</Link>
 		</main>
 	);
 }
