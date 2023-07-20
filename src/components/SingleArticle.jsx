@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { getArticleById, getCommentsById, updateArticleVote } from "../api";
+import { getArticleById, getCommentsById } from "../api";
 import { useParams } from "react-router-dom";
+import VoteBtn from "./VoteBtn";
 
 export default function SingleArticle() {
 	const { article_id } = useParams();
@@ -8,14 +9,6 @@ export default function SingleArticle() {
 	const [isLoading, setIsLoading] = useState(true);
 	const [singleArticle, setSingleArticle] = useState([]);
 	const [comments, setComments] = useState([]);
-	const [votes, setVotes] = useState(0);
-
-	const handleLikes = () => {
-		updateArticleVote(article_id).then(res => console.log(res))
-		setVotes(votes + 1);
-	};
-
-	const handleDislikes = () => (votes > 0 ? setVotes(votes - 1) : setVotes(0));
 
 	useEffect(() => {
 		setIsLoading(isLoading);
@@ -39,9 +32,7 @@ export default function SingleArticle() {
 				<p>{singleArticle.body}</p>
 			</section>
 			<section className="likeBtn">
-				<button onClick={handleLikes}>Like</button>
-				<button onClick={handleDislikes}>Dislike</button>
-				<p>{votes} Votes</p>
+				<VoteBtn article_id={article_id} votes={singleArticle.votes} />
 			</section>
 			<section className="comments">
 				<h2 className="subHeaders">Comments</h2>

@@ -19,7 +19,16 @@ export const getCommentsById = async (article_id) => {
 	return data.comments;
 };
 
-export const updateArticleVote = (article_id) => {
-	const { data } = myApi.patch(`/articles/${article_id}`, {votes:0});
-	return data.article.votes
+export const upVoteRequest = async (article_id) => {
+	const { data } = await myApi.patch(`/articles/${article_id}`, {
+		inc_votes: 1,
+	});
+	return data.article;
+};
+
+export const downVoteRequest = async (article_id) => {
+	const { data } = await myApi.patch(`/articles/${article_id}`, {
+		inc_votes: -1,
+	});
+	return data.article;
 };

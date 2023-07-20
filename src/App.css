@@ -121,7 +121,7 @@ img {
 	width: 100vw;
 	display: flex;
 	flex-direction: column;
-	align-items:center ;
+	align-items: center;
 }
 
 .commentList > li {
@@ -145,4 +145,37 @@ img {
 
 .commentList > li > h4 {
 	color: var(--accent);
+}
+
+.voteUpBtn,
+.voteDownBtn {
+	border-radius: 1rem;
+	border: none;
+	background-color: var(--other);
+	padding: 0.5rem 1.5rem;
+	font-size: 1.5rem;
+	color: var(--bg);
+	margin: 0 .5rem;
+}
+
+.voteUpBtn:hover,
+.voteDownBtn:hover {
+	background-color: rgba(69, 123, 157, 60%);
+}
+
+.voteUpBtn:disabled {
+	background-color: greenyellow;
+	color: var(--text);
+}
+
+.voteDownBtn:disabled {
+	background-color: var(--accent);
+	color: var(--bg);
+}
+
+.voting {
+	width: 100vw;
+	text-align: center;
+	margin: 1rem 0;
+
 }
