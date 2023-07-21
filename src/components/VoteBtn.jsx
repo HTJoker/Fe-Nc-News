@@ -3,34 +3,30 @@ import { updateArticleVotes } from "../api";
 
 export default function VoteBtn({ article_id, votes }) {
 	const [voteCount, setVoteCount] = useState(votes);
-	const [isClicked, setIsClicked] = useState(false);
+	const [isClicked, setUpClicked] = useState(false);
 
 	useEffect(() => {
-		setIsClicked(isClicked);
+		setUpClicked(isClicked);
 	}, []);
 
-	const handleUpVotes = () => {
+	const handleVotes = (vote) => {
 		if (!isClicked) {
-			setVoteCount(voteCount + 1);
-			setIsClicked(true);
-			updateArticleVotes(article_id, 1).catch((error) => {
+			setVoteCount(voteCount + vote);
+			setUpClicked(true);
+			updateArticleVotes(article_id, vote).catch((error) => {
 				console.log(error);
 				setVoteCount(voteCount);
 				alert("Something went wrong. Please try again later.");
-				setIsClicked(false);
+				setUpClicked(false);
 			});
-		}
-	};
-
-	const handleDownVotes = () => {
-		if (!isClicked) {
-			setVoteCount(voteCount - 1);
-			setIsClicked(true);
-			updateArticleVotes(article_id, -1).catch((error) => {
+		} else {
+			setVoteCount(voteCount - vote);
+			setUpClicked(false);
+			updateArticleVotes(article_id, vote).catch((error) => {
 				console.log(error);
 				setVoteCount(voteCount);
 				alert("Something went wrong. Please try again later.");
-				setIsClicked(false);
+				setUpClicked(true);
 			});
 		}
 	};
@@ -39,15 +35,13 @@ export default function VoteBtn({ article_id, votes }) {
 		<div className="voting">
 			<button
 				className="voteUpBtn"
-				onClick={handleUpVotes}
-				disabled={isClicked ? true : false}
+				onClick={() => handleVotes(1)}
 			>
-				{"Vote up"}
+				UpVote
 			</button>
 			<button
 				className="voteDownBtn"
-				onClick={handleDownVotes}
-				disabled={isClicked ? true : false}
+				onClick={() => handleVotes(-1)}
 			>
 				DownVotes
 			</button>

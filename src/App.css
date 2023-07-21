@@ -163,9 +163,15 @@ img {
 	background-color: rgba(69, 123, 157, 60%);
 }
 
+.voteUpBtn:checked {
+	background-color: green;
+}
+.voteDownBtn:disabled {
+	background-color: var(--accent);
+}
+
 .voting {
 	width: 100vw;
 	text-align: center;
 	margin: 1rem 0;
-
 }
