@@ -9,7 +9,9 @@ export default function VoteBtn({ article_id, votes }) {
 		setUpClicked(isClicked);
 	}, []);
 
-	const handleUpVotes = (vote) => {
+
+
+	const handleVotes = (vote) => {
 		if (!isClicked) {
 			setVoteCount(voteCount + vote);
 			setUpClicked(true);
@@ -19,6 +21,7 @@ export default function VoteBtn({ article_id, votes }) {
 				alert("Something went wrong. Please try again later.");
 				setUpClicked(false);
 			});
+
 		}
 	};
 
@@ -31,17 +34,29 @@ export default function VoteBtn({ article_id, votes }) {
 				setVoteCount(voteCount);
 				alert("Something went wrong. Please try again later.");
 				setUpClicked(false);
-			});
-		}
+		} 
 	};
 
 	return (
 		<div className="voting">
+
 			<button className="voteUpBtn" onClick={() => handleUpVotes(1)
 			}>
 				UpVote
 			</button>
 			<button className="voteDownBtn" onClick={() => handleDownVotes(1)}>
+
+			<button
+				className="voteUpBtn"
+				onClick={() => handleVotes(1)}
+			>
+				UpVote
+			</button>
+			<button
+				className="voteDownBtn"
+				onClick={() => handleVotes(-1)}
+			>
+
 				DownVotes
 			</button>
 			<h3>{voteCount} Votes</h3>
