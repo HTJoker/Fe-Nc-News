@@ -9,7 +9,7 @@ export default function VoteBtn({ article_id, votes }) {
 		setUpClicked(isClicked);
 	}, []);
 
-	const handleVotes = (vote) => {
+	const handleUpVotes = (vote) => {
 		if (!isClicked) {
 			setVoteCount(voteCount + vote);
 			setUpClicked(true);
@@ -19,30 +19,29 @@ export default function VoteBtn({ article_id, votes }) {
 				alert("Something went wrong. Please try again later.");
 				setUpClicked(false);
 			});
-		} else {
+		}
+	};
+
+	const handleDownVotes = (vote) => {
+		if (!isClicked) {
 			setVoteCount(voteCount - vote);
-			setUpClicked(false);
-			updateArticleVotes(article_id, vote).catch((error) => {
+			setUpClicked(true);
+			updateArticleVotes(article_id, -vote).catch((error) => {
 				console.log(error);
 				setVoteCount(voteCount);
 				alert("Something went wrong. Please try again later.");
-				setUpClicked(true);
+				setUpClicked(false);
 			});
 		}
 	};
 
 	return (
 		<div className="voting">
-			<button
-				className="voteUpBtn"
-				onClick={() => handleVotes(1)}
-			>
+			<button className="voteUpBtn" onClick={() => handleUpVotes(1)
+			}>
 				UpVote
 			</button>
-			<button
-				className="voteDownBtn"
-				onClick={() => handleVotes(-1)}
-			>
+			<button className="voteDownBtn" onClick={() => handleDownVotes(1)}>
 				DownVotes
 			</button>
 			<h3>{voteCount} Votes</h3>
