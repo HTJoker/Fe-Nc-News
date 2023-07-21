@@ -1,30 +1,35 @@
 import { useState, useEffect } from "react";
-import { updateArticleVotes} from "../api";
+import { updateArticleVotes } from "../api";
 
 export default function VoteBtn({ article_id, votes }) {
-	const [voteIncrement, setVoteIncrement] = useState(0);
+	const [voteCount, setVoteCount] = useState(votes);
+	const [isClicked, setIsClicked] = useState(null);
 
+	useEffect(() => {
+		setIsClicked(isClicked);
+	}, []);
 
-	useEffect(() => setVoteIncrement(votes), []);
+	const addVote = () => {
+		setIsClicked(true);
+		setVoteCount((currCount) => currCount + 1);
+		updateArticleVotes(article_id, 1).then(({ votes }) => setVoteCount(votes));
+	};
 
-	const handleVotes = () => {
-    updateArticleVotes(article_id, 1)
-    .then(({votes}) => setVoteIncrement(votes))
+	const subtractVote = () => {
+		setIsClicked(!isClicked);
+		setVoteCount((currCount) => currCount - 1);
+		updateArticleVotes(article_id, -1).then(({ votes }) => setVoteCount(votes));
 	};
 
 	return (
 		<section className="voting">
-			<button className="voteUpBtn" onClick={handleVotes}>
-				Up Vote
-			</button>
-			{/* <button
-				disabled={isDownClicked}
-				className="voteDownBtn"
-				onClick={handleDownVote}
+			<button
+				className="voteUpBtn"
+				onClick={isClicked ? subtractVote : addVote}
 			>
-				Down Vote
-			</button> */}
-			<h3>{voteIncrement} Votes</h3>
+				{isClicked ? "Liked" : "Like"}
+			</button>
+			<h3>{voteCount} Votes</h3>
 		</section>
 	);
 }
