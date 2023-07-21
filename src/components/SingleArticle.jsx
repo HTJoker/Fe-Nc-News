@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getArticleById, getCommentsById } from "../api";
 import { useParams } from "react-router-dom";
+import VoteBtn from "./VoteBtn";
 
 export default function SingleArticle() {
 	const { article_id } = useParams();
@@ -29,6 +30,9 @@ export default function SingleArticle() {
 				<h4>{singleArticle.author}</h4>
 				<img src={singleArticle.article_img_url} />
 				<p>{singleArticle.body}</p>
+			</section>
+			<section className="VoteBtn">
+				<VoteBtn article_id={article_id} votes={singleArticle.votes} />
 			</section>
 			<section className="comments">
 				<h2 className="subHeaders">Comments</h2>
