@@ -163,16 +163,6 @@ img {
 	background-color: rgba(69, 123, 157, 60%);
 }
 
-.voteUpBtn:disabled {
-	background-color: greenyellow;
-	color: var(--text);
-}
-
-.voteDownBtn:disabled {
-	background-color: var(--accent);
-	color: var(--bg);
-}
-
 .voting {
 	width: 100vw;
 	text-align: center;

@@ -31,7 +31,7 @@ export default function SingleArticle() {
 				<img src={singleArticle.article_img_url} />
 				<p>{singleArticle.body}</p>
 			</section>
-			<section className="likeBtn">
+			<section className="VoteBtn">
 				<VoteBtn article_id={article_id} votes={singleArticle.votes} />
 			</section>
 			<section className="comments">
